@@ -1,0 +1,39 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: front
+  namespace: chaos-engineering
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: front
+  template:
+    metadata:
+      name: front
+      labels:
+        name: front
+        app: front
+        service: front
+    spec:
+      nodeSelector:
+        app_group: chaos-engineering
+      containers:
+      - image: chaostoolkit/front
+        name: front
+        ports:
+        - containerPort: 8000
+          protocol: TCP
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: "200m"
+            memory: 64Mi
+          requests:
+            cpu: "100m"
+            memory: 64Mi
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1

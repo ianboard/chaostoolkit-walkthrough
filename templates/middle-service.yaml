@@ -1,0 +1,16 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: middle
+  namespace: chaos-engineering
+  labels:
+    service: middle
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    protocol: TCP
+    port: 8001
+    targetPort: 8001
+  selector:
+    service: middle

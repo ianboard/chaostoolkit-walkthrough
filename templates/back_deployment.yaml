@@ -1,0 +1,39 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: back
+  namespace: chaos-engineering
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: back
+  template:
+    metadata:
+      name: back
+      labels:
+        name: back
+        app: back
+        service: back
+    spec:
+      nodeSelector:
+        app_group: chaos-engineering
+      containers:
+      - image: chaostoolkit/back
+        name: back
+        ports:
+        - containerPort: 8002
+          protocol: TCP
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: "200m"
+            memory: 64Mi
+          requests:
+            cpu: "100m"
+            memory: 64Mi
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
