@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  ctk-walkthrough:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2022-06-27T10:39:31.147041+01:00"
+    description: A Helm chart for deploying chaos toolkit example apps
+    digest: 2715027e4346478da464f4a40de83049bff2c30ed61fb50b6eaac570afad1bf4
+    name: ctk-walkthrough
+    type: application
+    urls:
+    - ctk-walkthrough-0.1.0.tgz
+    version: 0.1.0
+generated: "2022-06-27T10:39:31.146445+01:00"
